@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">RentApp</string>
+    <string name="restart">Restart</string>
+    <string name="update_download_install">Update is downloaded. Please install</string>
+    <string name="welcome">Welcome</string>
+    <string name="wifi">WiFi</string>
+    <string name="network">Network</string>
+    <string name="unavailable">Not Available</string>
+    <string name="no_network_msg"><![CDATA[Please check your internet connection &amp; try again]]></string>
+    <string name="something_went_wrong">Something went wrong, please try again</string>
+</resources>
