@@ -1,11 +1,9 @@
 package com.webaddicted.forrent.global
 
-import android.app.Activity
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -277,6 +275,54 @@ class GlobalUtility {
                 edtView.isFocusableInTouchMode = false
                 edtView.setTextColor(ContextCompat.getColor(context, R.color.gray))
             }
+        }
+        fun showOkCancelDialog(
+            context: Context,
+            title: String,
+            msg: String,
+            okBtn: String = context.getString(R.string.ok),
+            cancelBtn: String = context.getString(R.string.cancel),
+            okListener: DialogInterface.OnClickListener,
+            cancelListener: DialogInterface.OnClickListener
+        ): AlertDialog? {
+            return showOKCancelDialog(
+                context,
+                R.style.AlertDialogStyle,
+                R.style.DialogSlideUpAnimation,
+                title,
+                msg,
+                0,
+                false,
+                okBtn,
+                cancelBtn,
+                okListener,
+                cancelListener
+            )
+        }
+        fun showOKCancelDialog(
+            context: Context,
+            style: Int,
+            dialogAnimation: Int,
+            title: String,
+            msg: String,
+            icon: Int,
+            isCancelable: Boolean,
+            okBtn: String,
+            cancelBtn: String,
+            okListener: DialogInterface.OnClickListener,
+            cancelListener: DialogInterface.OnClickListener
+        ): AlertDialog? {
+            val alertDialog = AlertDialog.Builder(context, style)
+            alertDialog.setTitle(title)
+            alertDialog.setMessage(msg)
+            if (icon > 0) alertDialog.setIcon(icon)
+            alertDialog.setCancelable(isCancelable)
+            alertDialog.setPositiveButton(okBtn, okListener)
+            alertDialog.setNegativeButton(cancelBtn, cancelListener)
+            val alertDialogs = alertDialog.create()
+            alertDialogs.window?.attributes?.windowAnimations = dialogAnimation
+            alertDialog.show()
+            return alertDialogs
         }
     }
 }
