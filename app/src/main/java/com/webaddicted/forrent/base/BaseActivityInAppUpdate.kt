@@ -1,4 +1,4 @@
-package com.webaddicted.forrent.ui.theme
+package com.webaddicted.forrent.base
 
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.Nullable
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -20,15 +19,16 @@ import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.google.android.play.core.tasks.Task
 import com.webaddicted.forrent.R
-import com.webaddicted.forrent.base.BaseActivity
 
 
 abstract class BaseActivityInAppUpdate(layoutId: Int? = null) : BaseActivity(layoutId), InstallStateUpdatedListener {
     private var appUpdateManager: AppUpdateManager? = null
     private var snackbar: Snackbar? = null
-    override fun onCreate(@Nullable savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkForUpdate()
+        Toast.makeText(this@BaseActivityInAppUpdate, "checkForUpdate", Toast.LENGTH_LONG).show()
+
     }
 
     private fun checkForUpdate() {
@@ -48,7 +48,7 @@ abstract class BaseActivityInAppUpdate(layoutId: Int? = null) : BaseActivity(lay
             ) {
                 // Request the update.
                 // Log.e(TAG, "Update Available" );
-                Toast.makeText(this@BaseActivityInAppUpdate, "Update Available", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@BaseActivityInAppUpdate, "Update Available UpdateAvailability.UPDATE_AVAILABLE", Toast.LENGTH_LONG).show()
                 try {
                     registerInstallStateListener(appUpdateManager)
                     appUpdateManager?.startUpdateFlowForResult( // Pass the intent that is returned by 'getAppUpdateInfo()'.
@@ -58,6 +58,7 @@ abstract class BaseActivityInAppUpdate(layoutId: Int? = null) : BaseActivity(lay
                         UPDATE_APP_REQUEST_CODE
                     )
                 } catch (e: SendIntentException) {
+                    Toast.makeText(this@BaseActivityInAppUpdate, "Update Available Exception - ${e.message}", Toast.LENGTH_LONG).show()
                     Log.d("Test", "Lag + ${e.message}")
                 }
             }
@@ -83,7 +84,9 @@ abstract class BaseActivityInAppUpdate(layoutId: Int? = null) : BaseActivity(lay
         appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
                 // If the update is downloaded but not installed,
                 // notify the user to complete the update.
-                if (appUpdateInfo.installStatus() === InstallStatus.DOWNLOADED) {
+            Toast.makeText(this@BaseActivityInAppUpdate, "checkIfUpdateIsStalled - ${appUpdateInfo.updateAvailability()}", Toast.LENGTH_LONG).show()
+
+            if (appUpdateInfo.installStatus() === InstallStatus.DOWNLOADED) {
                     //  Toast.makeText(BaseActivityInAppUpdate.this, "On resume check shows installation already downloaded", Toast.LENGTH_LONG).show();
                     popupSnackbarForCompleteUpdate(this.getString(R.string.update_download_install))
                 }
@@ -93,12 +96,14 @@ abstract class BaseActivityInAppUpdate(layoutId: Int? = null) : BaseActivity(lay
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            UPDATE_APP_REQUEST_CODE -> {}
+            UPDATE_APP_REQUEST_CODE -> {
+                Toast.makeText(this@BaseActivityInAppUpdate, "onActivityResult - UPDATE_APP_REQUEST_CODE", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
     private fun popupSnackbarForCompleteUpdate(message: String) {
-        Toast.makeText(this@BaseActivityInAppUpdate, "complete update $message", Toast.LENGTH_LONG).show()
+        Toast.makeText(this@BaseActivityInAppUpdate, "PopupSnackbarForCompleteUpdate complete update $message", Toast.LENGTH_LONG).show()
 
         /*if (findViewById(R.id.place_snackbar) != null) {
             snackbar = Snackbar.make(findViewById(R.id.place_snackbar), message, Snackbar.LENGTH_LONG);

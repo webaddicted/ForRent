@@ -8,4 +8,8 @@
     <string name="unavailable">Not Available</string>
     <string name="no_network_msg"><![CDATA[Please check your internet connection &amp; try again]]></string>
     <string name="something_went_wrong">Something went wrong, please try again</string>
+    <string name="dummyText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmood tempor inciddidunt ut labore et dolore magna sed do sed do aliqua.</string>
+    <string name="mobile_no_linked">Your mobile number will be linked with \n deepaksharma040695@gmail.com</string>
+
+
 </resources>

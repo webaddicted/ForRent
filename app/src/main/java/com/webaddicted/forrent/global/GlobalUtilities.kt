@@ -42,10 +42,9 @@ import java.util.*
  * Created by Deepak Sharma on 01/07/23.
  */
 class GlobalUtility {
-
     companion object {
         private val TAG = GlobalUtility::class.java.simpleName
-        const val NOTIFICATION_CHANNEL_ID = "com.icc.cruuui"
+        private const val NOTIFICATION_CHANNEL_ID = "com.icc.cruuui"
         private var snackbar: Snackbar? = null
         fun print(tag: String?, msg: String) = Log.d(tag, msg)
 
