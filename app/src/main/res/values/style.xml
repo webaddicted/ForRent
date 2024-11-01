@@ -1,0 +1,15 @@
+<resources>
+    <style name="AlertDialogStyle" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorPrimary">@color/app_color</item>
+        <item name="android:colorAccent">@color/app_color</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!--<item name="android:windowAnimationStyle">@style/DialogSlideUpAnimation</item>-->
+    </style>
+    <style name="DialogSlideUpAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/dialog_slide_down</item>
+    </style>
+
+</resources>

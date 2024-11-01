@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">RentApp</string>
+    <string name="restart">Restart</string>
+    <string name="update_download_install">Update is downloaded. Please install</string>
+    <string name="welcome">Welcome</string>
+    <string name="wifi">WiFi</string>
+    <string name="network">Network</string>
+    <string name="unavailable">Not Available</string>
+    <string name="no_network_msg"><![CDATA[Please check your internet connection &amp; try again]]></string>
+    <string name="something_went_wrong">Something went wrong, please try again</string>
+    <string name="dummyText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmood tempor inciddidunt ut labore et dolore magna sed do sed do aliqua.</string>
+    <string name="mobile_no_linked">Your mobile number will be linked with \n deepaksharma040695@gmail.com</string>
+    <string name="ok">ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="update_for_rent">Update ForRent</string>
+    <string name="update_desc">ForRent recommends that you update to the latest version. you can keep playing the game while downloading the update.</string>
+    <string name="update_available">Update Available</string>
+    <string name="new_update_available">A New Update is Available. Do you want to download ?</string>
+    <string name="download">Download</string>
+    <string name="flexible_update">Flexible Update</string>
+    <string name="immediate_update">Immediate Update</string>
+</resources>
