@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle.Event
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -14,14 +15,13 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.google.android.play.core.tasks.Task
-import com.webaddicted.forrent.R
 import com.webaddicted.forrent.base.UpdateManagerConstant.FLEXIBLE
 import java.lang.ref.WeakReference
 
 
 class UpdateManager private constructor(activity: AppCompatActivity) : LifecycleObserver {
-    private val mActivityWeakReference: WeakReference<AppCompatActivity>
+    private val mActivityWeakReference: WeakReference<AppCompatActivity> = WeakReference(activity)
+
     // Default mode is FLEXIBLE
     private var mode = FLEXIBLE
     // Creates instance of the manager.
@@ -106,7 +106,6 @@ class UpdateManager private constructor(activity: AppCompatActivity) : Lifecycle
         }
 
     init {
-        mActivityWeakReference = WeakReference(activity)
         appUpdateManager = this.activity?.let { AppUpdateManagerFactory.create(it) }
         appUpdateInfoTask = appUpdateManager?.appUpdateInfo as Task<AppUpdateInfo>
         activity.lifecycle.addObserver(this)

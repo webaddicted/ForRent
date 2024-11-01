@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
-    implementation("com.google.android.play:core:1.10.3")
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation(libs.app.update)
+    implementation(libs.review)
+    implementation(libs.gson)
 }
